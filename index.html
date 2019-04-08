@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style>
+      h2 {
+        font-weight: 300;
+      }
+      html,body {
+        height: 100vh;
+      }
+      body {
+        font-family: 'Roboto Condensed', sans-serif;
+        margin: 0px;
+      }
+      div.fatherSelectContain {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        flex-basis: 30%;
+        /* background-image: linear-gradient(to right top, #1e88e5, #278fe9, #3097ed, #399ef1, #42a5f5); */
+        background-image: linear-gradient(to right top, #9e9e9e, #949494, #898989, #7f7f7f, #757575);
+        color: white;
+      }
+
+      .selectContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+      }
+      .fatherSelectContain {
+        color: #424242;
+        padding: 30px;
+        box-sizing: border-box;
+        justify-content: center;
+      }
+      /* .selectContainer:nth-child(even) {
+        margin: 0px 10px;
+      } */
+      .headerDiv {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .questionTypeSpan {
+        font-weight: bold;
+      }
+      div.tool {
+        box-shadow: 3px 3px 29px -8px rgba(0,0,0,.34);
+        width: 275px;
+        padding: 10px 20px;
+        position: fixed;
+        z-index: 1000;
+        background: #F5F5F5;
+      }
+      div.toolRow {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .SVGHolder {
+        z-index: 1;
+        position: relative;
+        width: 70%;
+        flex-basis: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .selector {
+        height: 35px;
+        background: white;
+        color: #616161;
+        width: 200px;
+      }
+      div.SVGHolder {
+        background: white;
+      }
+      .x.axis text {
+        font-size: 14px;
+        font-family: 'Roboto Condensed', sans-serif;
+        fill: #616161
+      }
+
+      .x.axis line, path {
+        stroke: grey;
+      }
+    </style>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <title></title>
+  </head>
+  <body>
+    <div class="selectorsAndSVG" style="display: flex; height: 100%;">
+      <div class="fatherSelectContain">
+        <div class="headerDiv">
+          <h2 class = "mainHeader">Growth distributions of EL Participants across life skills</h2>
+        </div>
+        <div class="questSelect Container">
+          <h4 class = 'controlExplain'>Select Skill</h4>
+          <select class="selector skillSelect" name="skillSelect">
+            <option value="SC">Self-Confidence</option>
+            <option value="GM">Growth Mindset</option>
+            <option value="AA">Ability to achieve</option>
+            <option value="RT">Risk taking</option>
+            <option value="OMC">Open mindedness and curiosity</option>
+            <option value="OBT">Out of the box thinking</option>
+            <option value="SR">Self reflection</option>
+            <option value="HWB">Health and well-being</option>
+            <option value="EE">Emotional intelligence</option>
+            <option value="Overall">Overall score</option>
+          </select>
+        </div>
+
+        <div class="filtSelect Container">
+          <h4 class="controlExplain">Filter options</h4>
+          <div class="selects_flex_parent" style="display: flex; flex-direction: column">
+            <div class="selectContainer">
+              <label style="padding-bottom: 5px" for="citySelect">City</label>
+              <select id = "citySelect" class="filt selector citySelect" name="citySelect">
+                <option value=null>All</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Dharwad">Dharwad</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+              </select>
+            </div>
+            <div class="selectContainer">
+              <label style="padding-bottom: 5px" for="sexSelect">Sex</label>
+              <select id="sexSelect" class="filt selector sexSelect" name="sexSelect">
+                <option value=null>All</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div class="selectContainer">
+              <label style="padding-bottom: 5px" for="programSelect">Program</label>
+              <select id="programSelect" class="filt selector programSelect" name="programSelect">
+                <option value=null>All</option>
+                <option value="BM">Build maya</option>
+                <option value="JFK">Just for kicks</option>
+                <option value="MB">Music basti</option>
+              </select>
+            </div>
+            <div class="selectContainer">
+              <label style="padding-bottom: 5px" for="yoiSelect">Year</label>
+              <select id="yoiSelect" class="filt selector yoiSelect" name="yoiSelect">
+                <option value=null>All</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="NA">NA</option>
+              </select>
+            </div>
+            <div class="selectContainer">
+              <label style="padding-bottom: 5px" for="ageGrpSelect">Age Group</label>
+              <select id="ageGrpSelect" class="filt selector ageGrpSelect" name="ageGrpSelect">
+                <option value=null>All</option>
+                <option value="6-10">6-10</option>
+                <option value="11-14">11-14</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="SVGHolder">
+        <svg class= "skillDist" width = 960 height = 500></svg>
+      </div>
+    </div>
+
+
+
+    <script type="text/javascript" src = "index.js"></script>
+  </body>
+</html>
