@@ -129,7 +129,7 @@ function draw(data, skill){
 
   xAxisG.append('text')
     .attr('transform', `translate(${width/2}, 40)`)
-    .text('Differnce Between Endline and Baseline')
+    .text('Difference Between Endline and Baseline')
     .style('text-anchor', 'middle')
     //.style('fill', 'black')
     .style('font-size', '14px')
