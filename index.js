@@ -143,7 +143,7 @@ function draw(data, skill){
 
   let impStatsDat = [
     {label: "Avg Growth", value: meanVar},
-    {label: "Avg % Growth", value: roundToDigits((meanVar/5) * 100, 2) + '%'},
+    {label: "Avg % Growth", value: roundToDigits((meanVar/4) * 100, 2) + '%'},
   ]
 
   svg.append('g')
@@ -157,12 +157,12 @@ function draw(data, skill){
       .attr('transform', (d, i) => 'translate(' + 0 + ',' + (i * 20) + ')')
       .style('fill', '#616161');
 
-  console.log({
-    mean: roundToDigits(meanVar, 2),
-    moreZero: greaterZero,
-    lessZero: lesserZero,
-    noZero: noZero
-  })
+  // console.log({
+  //   mean: roundToDigits(meanVar, 2),
+  //   moreZero: greaterZero,
+  //   lessZero: lesserZero,
+  //   noZero: noZero
+  // })
 
   d3.selectAll('rect.studentRect')
     .on('mouseover', mouseO(true, skill))
@@ -234,8 +234,19 @@ function Rearr(data, filtObj){
     let sexLog = filtObj.Sex == null ? true : d.Gender == filtObj.Sex;
     let progLog = filtObj.Program == null ? true : d.Program == filtObj.Program;
     let yoiLog = filtObj.YOI == null ? true : d["Year of Intervention"] == filtObj.YOI;
-    let ageGrpLog = filtObj.ageGrp == null ? true : (filtObj.ageGrp == "6-10" ? +d["Age"] <= 10 : +d["Age"] > 10);
+    let ageGrpLog = filtObj.ageGrp == null ? true : filterAge(d, filtObj.ageGrp);
 
+    function filterAge(entry, option){
+      if (option == "Under 10") {
+        return entry["Age"] <= 10;
+      }
+      else if (option == "Under 12"){
+        return entry["Age"] > 10 & d["Age"] <= 12
+      }
+      else {
+        return entry["Age"] > 12;
+      }
+    }
 
 
     // combined logical
