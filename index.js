@@ -141,9 +141,12 @@ function draw(data, skill){
   let lesserZero = varOfInt.filter(d => d > 0).length;
   let noZero = varOfInt.filter(d => d == 0).length;
 
+  let baseVals = filtData.map(d => d[`${skill}B`]);
+  let meanBase = roundToDigits(d3.mean(baseVals), 2);
+
   let impStatsDat = [
     {label: "Avg Growth", value: meanVar},
-    {label: "Avg % Growth", value: roundToDigits((meanVar/4) * 100, 2) + '%'},
+    {label: "Avg % Growth", value: roundToDigits((meanVar/meanBase) * 100, 2) + '%'},
   ]
 
   svg.append('g')
